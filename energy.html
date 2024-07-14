@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Table</title>
+    <style>
+        body {
+            background-image: url('html_portrait.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            animation: rotate1 10s linear infinite;
+        }
+
+        .circle-container span {
+            position: absolute;
+            width: 8px;
+            height: 3px;
+            transform-origin: 150px 150px;
+        }
+
+        .circle-container-straight {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+        }
+
+        .circle-container-straight span {
+            position: absolute;
+            width: 8px;
+            height: 3px;
+
+        }
+
+        .bottom-text {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: right;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circle-container"></div>
+    <div class="circle-container-straight"></div>
+
+    <div class="bottom-text">the sun touches us in this park&nbsp<br>from that light comes all of the
+        colors&nbsp<br>including the
+        one hundred and forty base css palette&nbsp<br>like RebeccaPurple&nbsp<br>named for a child&nbsp
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.querySelector('.circle-container');
+            const container_straight = document.querySelector('.circle-container-straight');
+            const numSpans = 140;
+            const radius = 150; // Radius of the circle
+
+            // Array of 140 default CSS colors
+            const colors = [
+                "AliceBlue", "AntiqueWhite", "Aqua", "Aquamarine", "Azure", "Beige", "Bisque", "Black", "BlanchedAlmond", "Blue",
+                "BlueViolet", "Brown", "BurlyWood", "CadetBlue", "Chartreuse", "Chocolate", "Coral", "CornflowerBlue", "Cornsilk", "Crimson",
+                "Cyan", "DarkBlue", "DarkCyan", "DarkGoldenRod", "DarkGray", "DarkGreen", "DarkKhaki", "DarkMagenta", "DarkOliveGreen", "DarkOrange",
+                "DarkOrchid", "DarkRed", "DarkSalmon", "DarkSeaGreen", "DarkSlateBlue", "DarkSlateGray", "DarkTurquoise", "DarkViolet", "DeepPink", "DeepSkyBlue",
+                "DimGray", "DodgerBlue", "FireBrick", "FloralWhite", "ForestGreen", "Fuchsia", "Gainsboro", "GhostWhite", "Gold", "GoldenRod",
+                "Gray", "Green", "GreenYellow", "HoneyDew", "HotPink", "IndianRed", "Indigo", "Ivory", "Khaki", "Lavender",
+                "LavenderBlush", "LawnGreen", "LemonChiffon", "LightBlue", "LightCoral", "LightCyan", "LightGoldenRodYellow", "LightGray", "LightGreen", "LightPink",
+                "LightSalmon", "LightSeaGreen", "LightSkyBlue", "LightSlateGray", "LightSteelBlue", "LightYellow", "Lime", "LimeGreen", "Linen", "Magenta",
+                "Maroon", "MediumAquaMarine", "MediumBlue", "MediumOrchid", "MediumPurple", "MediumSeaGreen", "MediumSlateBlue", "MediumSpringGreen", "MediumTurquoise", "MediumVioletRed",
+                "MidnightBlue", "MintCream", "MistyRose", "Moccasin", "NavajoWhite", "Navy", "OldLace", "Olive", "OliveDrab", "Orange",
+                "OrangeRed", "Orchid", "PaleGoldenRod", "PaleGreen", "PaleTurquoise", "PaleVioletRed", "PapayaWhip", "PeachPuff", "Peru", "Pink",
+                "Plum", "PowderBlue", "Purple", "RebeccaPurple", "Red", "RosyBrown", "RoyalBlue", "SaddleBrown", "Salmon", "SandyBrown",
+                "SeaGreen", "SeaShell", "Sienna", "Silver", "SkyBlue", "SlateBlue", "SlateGray", "Snow", "SpringGreen", "SteelBlue",
+                "Tan", "Teal", "Thistle", "Tomato", "Turquoise", "Violet", "Wheat", "White", "WhiteSmoke", "Yellow", "YellowGreen"
+            ];
+
+            for (let i = 0; i < numSpans; i++) {
+                const span = document.createElement('span');
+                const angle = (i / numSpans) * 2 * Math.PI;
+                const x = radius + radius * Math.cos(angle) - 4; // Adjust for span width
+                const y = radius + radius * Math.sin(angle) - 1.5; // Adjust for span height
+                span.style.transform = `translate(${x}px, ${y}px) rotate(${angle}rad)`;
+
+                // Assign a color from the array
+                span.style.backgroundColor = colors[i % colors.length];
+
+                container.appendChild(span);
+                container_straight.appendChild(span.cloneNode(true)); // Append the span twice
+
+            }
+        });
+    </script>
+</body>
+
+</html>
